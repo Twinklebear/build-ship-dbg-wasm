@@ -14,6 +14,10 @@ target_link_options(
   -sASSERTIONS=1
   -sEXIT_RUNTIME=1
   -sINVOKE_RUN=0
+  # RelWithDebInfo build flags, automatically enables split dwarf
+  $<$<CONFIG:RELWITHDEBINFO>:-gseparate-dwarf=${CMAKE_CURRENT_BINARY_DIR}/app.dwarf>
+  $<$<CONFIG:RELWITHDEBINFO>:-g>
+  $<$<CONFIG:RELWITHDEBINFO>:-O2>
   # Debug build flags
   $<$<CONFIG:DEBUG>:-fwasm-exceptions>
   $<$<CONFIG:DEBUG>:-g>
