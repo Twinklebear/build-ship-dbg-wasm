@@ -15,13 +15,12 @@
       "label": "npm_install",
       "type": "shell",
       "command": "npm i",
-      "isBuildCommand": true,
       "options": {
         "cwd": "${workspaceFolder}/web"
       }
     },
     {
-      "label": "run_app",
+      "label": "npm_serve",
       "type": "shell",
       "command": "npm run serve",
       "options": {
@@ -30,7 +29,7 @@
       "dependsOn": ["npm_install", "build"],
       "isBackground": true,
       "problemMatcher": {
-        "fileLocation": "autodetect",
+        "fileLocation": "autoDetect",
         "pattern": [
           {
             "regexp": ".* (\\w+) in (.*)\\((\\d+),(\\d+)\\)",
@@ -49,18 +48,17 @@
       }
     },
     {
-      "label": "stop_webpack",
+      "label": "stop_server",
       "type": "shell",
-      "command": "echo ${input:stop_webpack_input}",
-      "problemMatcher": []
+      "command": "echo ${input:stop_server_input}",
     }
   ],
   "inputs": [
     {
-      "id": "stop_webpack_input",
+      "id": "stop_server_input",
       "type": "command",
       "command": "workbench.action.tasks.terminate",
-      "args": "run_app"
+      "args": "npm_serve"
     }
   ]
 }

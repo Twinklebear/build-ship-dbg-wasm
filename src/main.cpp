@@ -7,8 +7,9 @@
 #include <emscripten/html5.h>
 #include <emscripten/html5_webgl.h>
 
+// Utility to convert an HSV color to RGB
 std::array<float, 3> hsv_to_rgb(const std::array<float, 3> &hsv);
-
+// Our main app loop run each frame
 void app_loop(void *);
 
 int main(int argc, const char **argv)
@@ -20,7 +21,7 @@ int main(int argc, const char **argv)
     attrs.majorVersion = 2;
     attrs.explicitSwapControl = false;
 
-    // Our canvas ID is just "canvas"
+    // Our canvas ID is just "canvas" in web/index.html
     const auto context = emscripten_webgl_create_context("canvas", &attrs);
     emscripten_webgl_make_context_current(context);
 
@@ -34,8 +35,9 @@ uint32_t hue = 0;
 
 void app_loop(void *)
 {
+    // Update the hue to change the color this frame
     hue = (hue + 1) % 360;
-    const auto rgb = hsv_to_rgb({static_cast<float>(hue), 0.8f, 0.8f});
+    auto rgb = hsv_to_rgb({static_cast<float>(hue), 0.8f, 0.8f});
 
     glClearColor(rgb[0], rgb[1], rgb[2], 1.f);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -84,6 +86,5 @@ std::array<float, 3> hsv_to_rgb(const std::array<float, 3> &hsv)
         rgb[2] = q;
         break;
     }
-
     return rgb;
 }
