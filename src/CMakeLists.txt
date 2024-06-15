@@ -52,7 +52,6 @@ add_custom_command(
   OUTPUT ${PACKAGE_OUT_DIR}/dist/index.js
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/npm_package
   COMMAND npm i
-  COMMAND npm run clean_dist
   COMMAND npm run build)
 
 add_custom_target(
