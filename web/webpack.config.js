@@ -50,7 +50,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: "./node_modules/npm_package/*.wasm",
+          from: "./node_modules/npm_package/dist/*.wasm",
           to() {
             return "[name][ext]";
           },
