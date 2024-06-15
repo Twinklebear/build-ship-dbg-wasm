@@ -28,7 +28,8 @@ target_link_options(
 # files from the C++ build directory into the web app's source
 # directory under web/src/cpp
 
-set(WEB_OUT_DIR ${PROJECT_SOURCE_DIR}/web/src/cpp)
+#set(WEB_OUT_DIR ${PROJECT_SOURCE_DIR}/web/src/cpp)
+set(WEB_OUT_DIR ${PROJECT_SOURCE_DIR}/npm_package)
 
 add_custom_command(
   DEPENDS app

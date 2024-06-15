@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const path = require("path");
 
 module.exports = {
@@ -28,10 +29,6 @@ module.exports = {
         type: "asset/resource",
       },
       {
-        test: /\.wasm$/i,
-        type: "asset/resource",
-      },
-      {
         // Embed your WGSL files as strings
         test: /\.wgsl$/i,
         type: "asset/source",
@@ -49,6 +46,16 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./index.html",
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "./node_modules/npm_package/*.wasm",
+          to() {
+            return "[name][ext]";
+          },
+        },
+      ],
     }),
   ],
 };

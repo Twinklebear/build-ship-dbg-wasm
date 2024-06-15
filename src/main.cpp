@@ -14,6 +14,10 @@ void app_loop(void *);
 
 int main(int argc, const char **argv)
 {
+    if (argc < 2) {
+        std::cerr << "Must pass the canvas ID\n";
+        return 1;
+    }
     // Setup the WebGL2 context
     EmscriptenWebGLContextAttributes attrs = {};
     emscripten_webgl_init_context_attributes(&attrs);
@@ -22,7 +26,11 @@ int main(int argc, const char **argv)
     attrs.explicitSwapControl = false;
 
     // Our canvas ID is just "canvas" in web/index.html
-    const auto context = emscripten_webgl_create_context("canvas", &attrs);
+    const auto context = emscripten_webgl_create_context(argv[1], &attrs);
+    if (context == 0) {
+        std::cerr << "Creating webgl context failed\n";
+        return 1;
+    }
     emscripten_webgl_make_context_current(context);
 
     // Start the app loop
