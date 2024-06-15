@@ -15,3 +15,5 @@ web/src/cpp/
 .cache/
 compile_commands.json
 web/dbg
+npm_package/src/cpp/
+*.tgz

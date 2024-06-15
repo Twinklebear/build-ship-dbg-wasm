@@ -1,5 +1,5 @@
 {
-  "name": "npm_package",
+  "name": "@twinklebear/wasm_demo_package",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -7,6 +7,7 @@
     "dist"
   ],
   "scripts": {
+    "clean_dist": "rm -rf ./dist",
     "build": "webpack"
   },
   "keywords": [],
