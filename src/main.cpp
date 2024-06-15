@@ -22,7 +22,7 @@ int main(int argc, const char **argv)
     attrs.explicitSwapControl = false;
 
     // Our canvas ID is just "canvas" in web/index.html
-    const auto context = emscripten_webgl_create_context("canvas", &attrs);
+    const auto context = emscripten_webgl_create_context("#canvas", &attrs);
     emscripten_webgl_make_context_current(context);
 
     // Start the app loop
